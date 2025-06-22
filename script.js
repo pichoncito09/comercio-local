@@ -1,20 +1,5 @@
-// Animaciones al hacer scroll (Intersection Observer + Animate.css)
+// Animaciones al hacer scroll (Intersection Observer + Animate.css, AOS ahora hace la mayor parte)
 document.addEventListener("DOMContentLoaded", function () {
-  const animatedElements = document.querySelectorAll('.animate-on-scroll');
-  const animateClass = "animate__animated animate__fadeInUp";
-  const observer = new window.IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add(...animateClass.split(" "));
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-  animatedElements.forEach(el => observer.observe(el));
-
   // Navegación activa
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section');
@@ -26,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         section.offsetTop + section.offsetHeight - 90 > scrollPos
       ) {
         navLinks.forEach(link => link.classList.remove('active'));
-        navLinks[idx].classList.add('active');
+        navLinks[idx]?.classList.add('active');
       }
     });
   }
